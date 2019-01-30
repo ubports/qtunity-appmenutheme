@@ -1,12 +1,12 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: qtubuntu
+Upstream-Name: qtunity-appmenutheme
 
 Files: *
-Copyright: 2014 Canonical Ltd.
+Copyright: 2019 The UBports project
 License: LGPL-3
 
 Files: debian/*
-Copyright: 2014 Canonical Ltd.
+Copyright: 2019 The UBports project
 License: GPL-3
 
 License: LGPL-3

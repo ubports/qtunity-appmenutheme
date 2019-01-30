@@ -1,4 +1,4 @@
-// This file is part of QtUbuntu, a set of Qt components for Ubuntu.
+// This file is part of QtUnity, a set of Qt components for Unity.
 // Copyright © 2013 Canonical Ltd.
 //
 // This program is free software: you can redistribute it and/or modify it under
@@ -18,27 +18,27 @@
 
 QT_BEGIN_NAMESPACE
 
-class QUbuntuIntegrationPlugin : public QPlatformIntegrationPlugin {
+class QUnityIntegrationPlugin : public QPlatformIntegrationPlugin {
   Q_OBJECT
   Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.1"
-                    FILE "ubuntu.json")
+                    FILE "unity.json")
 
  public:
   QStringList keys() const;
   QPlatformIntegration* create(const QString&, const QStringList&);
 };
 
-QStringList QUbuntuIntegrationPlugin::keys() const {
+QStringList QUnityIntegrationPlugin::keys() const {
   QStringList list;
-  list << "ubuntu";
+  list << "unity";
   return list;
 }
 
-QPlatformIntegration* QUbuntuIntegrationPlugin::create(
+QPlatformIntegration* QUnityIntegrationPlugin::create(
     const QString& system, const QStringList& paramList) {
   Q_UNUSED(paramList);
-  if (system.toLower() == "ubuntu")
-    return new QUbuntuIntegration();
+  if (system.toLower() == "unity")
+    return new QUnityIntegration();
   return 0;
 }
 
