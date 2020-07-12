@@ -33,7 +33,12 @@ inline QString getActionString(QString label)
 {
     QRegExp re("\\W");
     label = label.replace(QRegExp("(&|_)"), "");
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+    QStringList parts = label.split(re, Qt::SkipEmptyParts);
+#else
     QStringList parts = label.split(re, QString::SkipEmptyParts);
+#endif
 
     QString result;
     Q_FOREACH(const QString& part, parts) {

@@ -30,6 +30,12 @@
 #define MENU_DEBUG_MSG qCDebug(unityappmenu).nospace() << "UnityPlatformMenu[" << (void*)this <<"]::" << __func__
 #define ITEM_DEBUG_MSG qCDebug(unityappmenu).nospace() << "UnityPlatformMenuItem[" << (void*)this <<"]::" << __func__
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+#define qtendl Qt::endl
+#else
+#define qtendl endl
+#endif
+
 namespace {
 
 int logRecusion = 0;
@@ -131,7 +137,7 @@ const QList<QPlatformMenu *> UnityPlatformMenuBar::menus() const
 QDebug UnityPlatformMenuBar::operator<<(QDebug stream)
 {
     stream.nospace().noquote() << QString("%1").arg("", logRecusion, QLatin1Char('\t'))
-            << "UnityPlatformMenuBar(this=" << (void*)this << ")" << endl;
+            << "UnityPlatformMenuBar(this=" << (void*)this << ")" << qtendl;
     Q_FOREACH(QPlatformMenu* menu, m_menus) {
         auto myMenu = static_cast<UnityPlatformMenu*>(menu);
         if (myMenu) {
@@ -358,7 +364,7 @@ const QList<QPlatformMenuItem *> UnityPlatformMenu::menuItems() const
 QDebug UnityPlatformMenu::operator<<(QDebug stream)
 {
     stream.nospace().noquote() << QString("%1").arg("", logRecusion, QLatin1Char('\t'))
-            << "UnityPlatformMenu(this=" << (void*)this << ", text=\"" << m_text << "\")" << endl;
+            << "UnityPlatformMenu(this=" << (void*)this << ", text=\"" << m_text << "\")" << qtendl;
     Q_FOREACH(QPlatformMenuItem* item, m_menuItems) {
         logRecusion++;
         auto myItem = static_cast<UnityPlatformMenuItem*>(item);
@@ -505,7 +511,7 @@ QDebug UnityPlatformMenuItem::operator<<(QDebug stream)
 
     stream.nospace().noquote() << QString("%1").arg("", logRecusion, QLatin1Char('\t'))
             << "UnityPlatformMenuItem(this=" << (void*)this << ", "
-            << (m_separator ? "Separator" : properties) << ")" << endl;
+            << (m_separator ? "Separator" : properties) << ")" << qtendl;
     if (m_menu) {
         auto myMenu = static_cast<UnityPlatformMenu*>(m_menu);
         if (myMenu) {
